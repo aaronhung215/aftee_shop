@@ -7,6 +7,7 @@
 
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-KX7QNPJ0KH"></script>
+<!--
 <script>
 	const queryString = window.location.search;
 
@@ -26,6 +27,35 @@
 });
 console.log(userid)
 </script>
+-->
 
+<script>
+	const queryString = window.location.search;
+
+	// Create a URLSearchParams object
+	const urlParams = new URLSearchParams(queryString);
+
+	// Get the user_id parameter value
+	const userid = urlParams.get('user_id');
+
+	// Google Tag Manager setup
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	gtag('js', new Date());
+
+	// Wrap gtag config in a Promise
+	const gtagPromise = new Promise((resolve) => {
+		gtag('config', 'G-KX7QNPJ0KH', {
+			'user_id': userid
+		});
+		resolve(); // Resolve the promise after the gtag config
+	});
+
+	// Wait for gtag to finish and then redirect
+	gtagPromise.then(() => {
+		console.log(userid);
+		window.location.href = 'https://aftee.tw/shop/';
+	});
+</script>
 
 </html>
