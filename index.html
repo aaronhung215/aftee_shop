@@ -43,19 +43,18 @@ console.log(userid)
 	function gtag(){dataLayer.push(arguments);}
 	gtag('js', new Date());
 
-	// Wrap gtag config in a Promise
-	const gtagPromise = new Promise((resolve) => {
-		gtag('config', 'G-KX7QNPJ0KH', {
-			'user_id': userid
-		});
-		resolve(); // Resolve the promise after the gtag config
+	// Configure Google Analytics with user_id
+	gtag('config', 'G-KX7QNPJ0KH', {
+		'user_id': userid
 	});
 
-	// Wait for gtag to finish and then redirect
-	gtagPromise.then(() => {
-		console.log(userid);
-		window.location.href = 'https://aftee.tw/shop/';
-	});
+	console.log(userid);
+
+	// Delay the redirection to give time for the gtag to execute
+//	setTimeout(function() {
+//		window.location.href = 'https://aftee.tw/shop/';
+//	}, 500); // Adjust the delay time (in milliseconds) if needed
+
 </script>
 
 </html>
