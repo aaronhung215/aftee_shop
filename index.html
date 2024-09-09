@@ -36,26 +36,31 @@ console.log(userid)
 	const urlParams = new URLSearchParams(queryString);
 
 	// Get the user_id parameter value
-	const userid = urlParams.get('user_id');
-
+	const userid = urlParams.get('source');
+    const uid = urlParams.get('uid');
+    const src = urlParams.get('src');
 	// Google Tag Manager setup
 	window.dataLayer = window.dataLayer || [];
 	function gtag(){dataLayer.push(arguments);}
 	gtag('js', new Date());
 
 	// Configure Google Analytics with user_id
-	gtag('config', 'G-KX7QNPJ0KH', {
-		'user_id': userid
-	});
+    gtag('config', 'G-KX7QNPJ0KH');
 
-	console.log(userid);
-
+    console.log(userid);
+    gtag('event', 'mkt_idmapping', {
+      'src': src,
+      'uid': uid
+    });
 	// Delay the redirection to give time for the gtag to execute
 //	setTimeout(function() {
 //		window.location.href = 'https://aftee.tw/shop/';
 //	}, 500); // Adjust the delay time (in milliseconds) if needed
 
 </script>
+<!--
 <div class="line-it-button" data-lang="zh_Hant" data-type="friend" data-env="REAL"   data-lineId="@320pyxmz" style="display: none;"></div>
+-->
 <script src="https://www.line-website.com/social-plugins/js/thirdparty/loader.min.js" async="async" defer="defer"></script>
+
 </html>
